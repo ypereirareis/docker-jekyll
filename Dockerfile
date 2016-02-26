@@ -11,19 +11,12 @@ RUN apt-get update && apt-get install -y \
   rubygems \
   sudo
 
-
 # Install jekyll
-RUN gem install jekyll:3.1.2 \
-  jekyll-sitemap \
-  bundler
-
+RUN gem install bundler
 
 ADD Gemfile /app/Gemfile
 ADD Gemfile.lock /app/Gemfile.lock
-RUN bundle install
-
-RUN useradd -d /home/bob -m -s /bin/bash bob
-USER bob
+RUN bundle install && bundle update
 
 VOLUME ["/app"]
 
@@ -32,5 +25,4 @@ WORKDIR /app
 EXPOSE 4000
 
 CMD ["bundle", "exec", "jekyll", "serve", "-H0.0.0.0"]
-
 
