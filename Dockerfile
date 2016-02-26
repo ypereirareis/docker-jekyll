@@ -17,6 +17,7 @@ RUN gem install jekyll:3.1.2 \
   jekyll-sitemap \
   bundler
 
+
 ADD Gemfile /app/Gemfile
 ADD Gemfile.lock /app/Gemfile.lock
 RUN bundle install
